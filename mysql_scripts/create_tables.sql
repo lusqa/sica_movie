@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `filme_premio` (
 );
 
 CREATE TABLE IF NOT EXISTS `horario` (
-	`id` INT(11) NOT NULL,
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
     `horario` VARCHAR(5) NOT NULL,
     CONSTRAINT `pk_horario`
         PRIMARY KEY(`id`)
@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `funcionario` (
 );
 
 CREATE TABLE IF NOT EXISTS `ingresso` (
-    `id` INT(11) NOT NULL,
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
     `filme_id` INT(11) NOT NULL,
     `sala_id` INT(11) NOT NULL,
     `horario_id` INT(11) NOT NULL,
