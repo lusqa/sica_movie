@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `sala` (
     `localizacao_id` INT(11) NOT NULL,
     CONSTRAINT `pk_sala`
         PRIMARY KEY(`id`),
-    CONSTRAINT `fk_sala_localizacao`
+    CONSTRAINT `fk_sala_localizacao_id`
         FOREIGN KEY(`localizacao_id`) REFERENCES `localizacao`(`id`)
 );
 
@@ -48,8 +48,44 @@ CREATE TABLE IF NOT EXISTS `filme_premio` (
     `premio_id` INT(11) NOT NULL,
     CONSTRAINT `pk_filme_premio`
         PRIMARY KEY(`filme_id`, `premio_id`),
-    CONSTRAINT `fk_id_filme`
+    CONSTRAINT `fk_filmepremio_filme_id`
         FOREIGN KEY(`filme_id`) REFERENCES `filme`(`id`),
-    CONSTRAINT `fk_id_premio`
+    CONSTRAINT `fk_filmepremio_premio_id`
         FOREIGN KEY(`premio_id`) REFERENCES `premio`(`id`)
+);
+
+CREATE TABLE IF NOT EXISTS `horario` (
+	`id` INT(11) NOT NULL,
+    `horario` VARCHAR(5) NOT NULL,
+    CONSTRAINT `pk_horario`
+        PRIMARY KEY(`id`)
+);
+
+CREATE TABLE IF NOT EXISTS `funcionario` (
+    `matricula` INT(11) NOT NULL,
+    `nome` VARCHAR(50) NOT NULL,
+    `data_admissao` DATETIME NOT NULL,
+    `funcao` varchar(30) NOT NULL,
+    `salario` decimal(10,2) NOT NULL,
+    `horario_id` INT(11) NOT NULL,
+    CONSTRAINT `pk_funcionario`
+        PRIMARY KEY(`matricula`),
+    CONSTRAINT `fk_funcionario_horario_id`
+        FOREIGN KEY(`horario_id`) REFERENCES `horario`(`id`)
+);
+
+CREATE TABLE IF NOT EXISTS `ingresso` (
+    `id` INT(11) NOT NULL,
+    `filme_id` INT(11) NOT NULL,
+    `sala_id` INT(11) NOT NULL,
+    `horario_id` INT(11) NOT NULL,
+    `isMeia` TINYINT (1) NOT NULL,
+    CONSTRAINT `pk_ingresso`
+        PRIMARY KEY(`id`),
+    CONSTRAINT `fk_ingresso_filme_id`
+        FOREIGN KEY(`filme_id`) REFERENCES `filme`(`id`),
+    CONSTRAINT `fk_ingresso_sala_id`
+        FOREIGN KEY(`sala_id`) REFERENCES `sala`(`id`),
+    CONSTRAINT `fk_ingresso_horario_id`
+        FOREIGN KEY(`horario_id`) REFERENCES `horario`(`id`)
 );
