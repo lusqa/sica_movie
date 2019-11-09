@@ -30,15 +30,16 @@ CREATE TABLE IF NOT EXISTS `filme` (
     `nome_pt` VARCHAR(255) NOT NULL,
     `nome_or` VARCHAR(255),
     `diretor` VARCHAR(50) NOT NULL,
-    `ano_lancamento` DATETIME NOT NULL,
+    `ano_lancamento` VARCHAR(4) NOT NULL,
     `tipo` VARCHAR(50) NOT NULL,
     `sinopse` VARCHAR(255) NOT NULL,
     CONSTRAINT `pk_filme`
         PRIMARY KEY(`id`),
-    CONSTRAINT `uq_nomept_filme`
-        UNIQUE(`id`),
-    CONSTRAINT `uq_lancamento_filme`
-        UNIQUE(`ano_lancamento`)
+    CONSTRAINT `check_filme`
+        CHECK(`nome_pt` AND `ano_lancamento` NOT IN (
+            (SELECT `nome_pt`, `ano_lancamento` FROM `filme` AS `f1`
+                WHERE `f1`.`nome_pt` = `nome_pt` AND `f1`.`ano_lancamento` = `ano_lancamento`)
+        ))
 ) ENGINE = InnoDB AUTO_INCREMENT = 1;
 
 CREATE TABLE IF NOT EXISTS `exibicao` (
@@ -55,10 +56,11 @@ CREATE TABLE IF NOT EXISTS `exibicao` (
         FOREIGN KEY(`horario_id`) REFERENCES `horario`(`id`)
 ) ENGINE = InnoDB AUTO_INCREMENT = 1;
 
-ALTER TABLE `exibicao` ADD CONSTRAINT `ch_exibicao`
-CHECK (`horario_id` NOT IN (
-	SELECT `horario_id` FROM  `exibicao` `e1` WHERE   `e1`.`sala_id` = `sala_id`)
-);
+ALTER TABLE `exibicao`
+ADD CONSTRAINT `ch_exibicao`
+    CHECK (`horario_id` NOT IN (
+        SELECT `horario_id` FROM  `exibicao` `e1` WHERE   `e1`.`sala_id` = `sala_id`)
+    );
 
 CREATE TABLE IF NOT EXISTS `premio` (
     `id` INT(11) NOT NULL AUTO_INCREMENT,
