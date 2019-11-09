@@ -2,10 +2,10 @@ USE bd_sica_movie;
 
 CREATE TABLE IF NOT EXISTS `localizacao` (
     `id` INT(11) NOT NULL AUTO_INCREMENT,
-    `nome` VARCHAR(50) NOT NULL,
+    `descricao` VARCHAR(50) NOT NULL,
     CONSTRAINT `pk_localizacao`
         PRIMARY KEY(`id`)
-);
+) ENGINE = InnoDB AUTO_INCREMENT = 1;
 
 CREATE TABLE IF NOT EXISTS `sala` (
     `id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -16,7 +16,14 @@ CREATE TABLE IF NOT EXISTS `sala` (
         PRIMARY KEY(`id`),
     CONSTRAINT `fk_sala_localizacao_id`
         FOREIGN KEY(`localizacao_id`) REFERENCES `localizacao`(`id`)
-);
+) ENGINE = InnoDB AUTO_INCREMENT = 1;
+
+CREATE TABLE IF NOT EXISTS `horario` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+    `descricao` VARCHAR(5) NOT NULL,
+    CONSTRAINT `pk_horario`
+        PRIMARY KEY(`id`)
+) ENGINE = InnoDB AUTO_INCREMENT = 1;
 
 CREATE TABLE IF NOT EXISTS `filme` (
     `id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -32,16 +39,35 @@ CREATE TABLE IF NOT EXISTS `filme` (
         UNIQUE(`id`),
     CONSTRAINT `uq_lancamento_filme`
         UNIQUE(`ano_lancamento`)
+) ENGINE = InnoDB AUTO_INCREMENT = 1;
+
+CREATE TABLE IF NOT EXISTS `exibicao` (
+	`filme_id` INT(11) NOT NULL,
+    `sala_id` INT(11) NOT NULL,
+    `horario_id` INT(11) NOT NULL,
+    CONSTRAINT `pk_filme_sala_horario`
+        PRIMARY KEY(`filme_id`, `sala_id`, `horario_id`),
+	CONSTRAINT `fk_exibicao_filme_id`
+        FOREIGN KEY(`filme_id`) REFERENCES `filme`(`id`),
+    CONSTRAINT `fk_exibicao_sala_id`
+        FOREIGN KEY(`sala_id`) REFERENCES `sala`(`id`),
+    CONSTRAINT `fk_exibicao_horario_id`
+        FOREIGN KEY(`horario_id`) REFERENCES `horario`(`id`)
+) ENGINE = InnoDB AUTO_INCREMENT = 1;
+
+ALTER TABLE `exibicao` ADD CONSTRAINT `ch_exibicao`
+CHECK (`horario_id` NOT IN (
+	SELECT `horario_id` FROM  `exibicao` `e1` WHERE   `e1`.`sala_id` = `sala_id`)
 );
 
 CREATE TABLE IF NOT EXISTS `premio` (
     `id` INT(11) NOT NULL AUTO_INCREMENT,
     `nome` VARCHAR(255) NOT NULL,
     `descricao` VARCHAR(255) NOT NULL,
-    `ano_premiacao` DATETIME NOT NULL,
+    `ano_premiacao` VARCHAR(4) NOT NULL,
     CONSTRAINT `pk_premio`
         PRIMARY KEY(`id`)
-);
+) ENGINE = InnoDB AUTO_INCREMENT = 1;
 
 CREATE TABLE IF NOT EXISTS `filme_premio` (
     `filme_id` INT(11) NOT NULL,
@@ -52,27 +78,43 @@ CREATE TABLE IF NOT EXISTS `filme_premio` (
         FOREIGN KEY(`filme_id`) REFERENCES `filme`(`id`),
     CONSTRAINT `fk_filmepremio_premio_id`
         FOREIGN KEY(`premio_id`) REFERENCES `premio`(`id`)
-);
+) ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `horario` (
-	`id` INT(11) NOT NULL AUTO_INCREMENT,
-    `horario` VARCHAR(5) NOT NULL,
-    CONSTRAINT `pk_horario`
+CREATE TABLE IF NOT EXISTS `funcao` (
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
+    `descricao` VARCHAR(50) NOT NULL,
+    CONSTRAINT `pk_funcao`
         PRIMARY KEY(`id`)
-);
+) ENGINE = InnoDB AUTO_INCREMENT = 1;
 
 CREATE TABLE IF NOT EXISTS `funcionario` (
-    `matricula` INT(11) NOT NULL,
+    `id` INT(11) NOT NULL,
+    `matricula` VARCHAR(30) NOT NULL,
     `nome` VARCHAR(50) NOT NULL,
-    `data_admissao` DATETIME NOT NULL,
-    `funcao` varchar(30) NOT NULL,
-    `salario` decimal(10,2) NOT NULL,
-    `horario_id` INT(11) NOT NULL,
+    `data_admissao` VARCHAR(4) NOT NULL,
+    `salario` DECIMAL(10,2) NOT NULL,
+	`funcao_id` INT(11) NOT NULL,
+    `localizacao_id` INT(11) NOT NULL,
     CONSTRAINT `pk_funcionario`
-        PRIMARY KEY(`matricula`),
-    CONSTRAINT `fk_funcionario_horario_id`
+        PRIMARY KEY(`id`),
+    CONSTRAINT `uq_funcionario_matricula`
+        UNIQUE(`matricula`),
+	CONSTRAINT `fk_funcionario_funcao_id`
+        FOREIGN KEY(`funcao_id`) REFERENCES `funcao`(`id`),
+    CONSTRAINT `fk_funcionario_localizacao_id`
+        FOREIGN KEY(`localizacao_id`) REFERENCES `localizacao`(`id`)
+) ENGINE = InnoDB AUTO_INCREMENT = 1;
+
+CREATE TABLE IF NOT EXISTS `funcionario_horario` (
+    `funcionario_id` INT(11) NOT NULL,
+    `horario_id` INT(11) NOT NULL,
+    CONSTRAINT `pk_funcionario_horario`
+        PRIMARY KEY(`funcionario_id`, `horario_id`),
+    CONSTRAINT `fk_funcionariohorario_funcionario_id`
+        FOREIGN KEY(`funcionario_id`) REFERENCES `funcionario`(`id`),
+    CONSTRAINT `fk_filmehorario_horario_id`
         FOREIGN KEY(`horario_id`) REFERENCES `horario`(`id`)
-);
+) ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `ingresso` (
     `id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -88,4 +130,4 @@ CREATE TABLE IF NOT EXISTS `ingresso` (
         FOREIGN KEY(`sala_id`) REFERENCES `sala`(`id`),
     CONSTRAINT `fk_ingresso_horario_id`
         FOREIGN KEY(`horario_id`) REFERENCES `horario`(`id`)
-);
+) ENGINE = InnoDB AUTO_INCREMENT = 1;
