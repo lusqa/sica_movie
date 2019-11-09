@@ -88,10 +88,10 @@ CREATE TABLE IF NOT EXISTS `funcao` (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1;
 
 CREATE TABLE IF NOT EXISTS `funcionario` (
-    `id` INT(11) NOT NULL,
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
     `matricula` VARCHAR(30) NOT NULL,
     `nome` VARCHAR(50) NOT NULL,
-    `data_admissao` VARCHAR(4) NOT NULL,
+    `data_admissao` DATE NOT NULL,
     `salario` DECIMAL(10,2) NOT NULL,
 	`funcao_id` INT(11) NOT NULL,
     `localizacao_id` INT(11) NOT NULL,
