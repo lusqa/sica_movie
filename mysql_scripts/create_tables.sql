@@ -34,13 +34,16 @@ CREATE TABLE IF NOT EXISTS `filme` (
     `tipo` VARCHAR(50) NOT NULL,
     `sinopse` VARCHAR(255) NOT NULL,
     CONSTRAINT `pk_filme`
-        PRIMARY KEY(`id`),
-    CONSTRAINT `check_filme`
-        CHECK(`nome_pt` AND `ano_lancamento` NOT IN (
-            (SELECT `nome_pt`, `ano_lancamento` FROM `filme` AS `f1`
-                WHERE `f1`.`nome_pt` = `nome_pt` AND `f1`.`ano_lancamento` = `ano_lancamento`)
-        ))
+        PRIMARY KEY(`id`)
 ) ENGINE = InnoDB AUTO_INCREMENT = 1;
+
+ALTER TABLE `filme`
+ADD CONSTRAINT `check_filme`
+	CHECK(`nome_pt` AND `ano_lancamento` NOT IN (
+		(SELECT `nome_pt`, `ano_lancamento` FROM `filme` AS `f1`
+			WHERE `f1`.`nome_pt` = `nome_pt` AND `f1`.`ano_lancamento` = `ano_lancamento`)
+		)
+);
 
 CREATE TABLE IF NOT EXISTS `exibicao` (
 	`filme_id` INT(11) NOT NULL,
