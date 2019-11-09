@@ -25,16 +25,34 @@ CREATE TABLE IF NOT EXISTS `horario` (
         PRIMARY KEY(`id`)
 ) ENGINE = InnoDB AUTO_INCREMENT = 1;
 
+CREATE TABLE IF NOT EXISTS `diretor` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+    `nome` VARCHAR(50) NOT NULL,
+    CONSTRAINT `pk_diretor`
+        PRIMARY KEY(`id`)
+) ENGINE = InnoDB AUTO_INCREMENT = 1;
+
+CREATE TABLE IF NOT EXISTS `filme_tipo` (
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
+    `descricao` VARCHAR(50) NOT NULL,
+    CONSTRAINT `pk_tipo`
+        PRIMARY KEY(`id`)
+) ENGINE = InnoDB AUTO_INCREMENT = 1;
+
 CREATE TABLE IF NOT EXISTS `filme` (
     `id` INT(11) NOT NULL AUTO_INCREMENT,
     `nome_pt` VARCHAR(255) NOT NULL,
     `nome_or` VARCHAR(255),
-    `diretor` VARCHAR(50) NOT NULL,
     `ano_lancamento` VARCHAR(4) NOT NULL,
-    `tipo` VARCHAR(50) NOT NULL,
     `sinopse` VARCHAR(255) NOT NULL,
+	`diretor_id` INT(11) NOT NULL,
+    `tipo_id` INT(11) NOT NULL,
     CONSTRAINT `pk_filme`
-        PRIMARY KEY(`id`)
+        PRIMARY KEY(`id`),
+	CONSTRAINT `fk_filme_diretor_id`
+        FOREIGN KEY(`diretor_id`) REFERENCES `diretor`(`id`),
+	CONSTRAINT `fk_filme_tipo_id`
+        FOREIGN KEY(`tipo_id`) REFERENCES `filme_tipo`(`id`)
 ) ENGINE = InnoDB AUTO_INCREMENT = 1;
 
 ALTER TABLE `filme`
