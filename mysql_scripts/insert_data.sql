@@ -232,3 +232,62 @@ INSERT INTO `funcionario_horario`(`funcionario_id`, `horario_id`) VALUES (36, 1)
 INSERT INTO `funcionario_horario`(`funcionario_id`, `horario_id`) VALUES (36, 2);
 INSERT INTO `funcionario_horario`(`funcionario_id`, `horario_id`) VALUES (36, 3);
 INSERT INTO `funcionario_horario`(`funcionario_id`, `horario_id`) VALUES (36, 4);
+
+-- Diretor
+INSERT INTO `diretor`(`nome`) VALUES("Francis Ford Coppola");
+INSERT INTO `diretor`(`nome`) VALUES("Milos Forman");
+INSERT INTO `diretor`(`nome`) VALUES("Stanley Kubrick");
+INSERT INTO `diretor`(`nome`) VALUES("Bryan Singer");
+INSERT INTO `diretor`(`nome`) VALUES("Brian De Palma");
+INSERT INTO `diretor`(`nome`) VALUES("Quentin Tarantino");
+INSERT INTO `diretor`(`nome`) VALUES("James L. Brooks");
+INSERT INTO `diretor`(`nome`) VALUES("Richard Donner");
+INSERT INTO `diretor`(`nome`) VALUES("Kátia Lund");
+INSERT INTO `diretor`(`nome`) VALUES("Wilson Yip");
+INSERT INTO `diretor`(`nome`) VALUES("Frank Darabont");
+
+-- Genero
+
+INSERT INTO `genero`(`descricao`) VALUES("Drama");
+INSERT INTO `genero`(`descricao`) VALUES("Crime");
+INSERT INTO `genero`(`descricao`) VALUES("Ação");
+INSERT INTO `genero`(`descricao`) VALUES("Comédia");
+INSERT INTO `genero`(`descricao`) VALUES("Aventura");
+INSERT INTO `genero`(`descricao`) VALUES("Ficção Cientifica");
+INSERT INTO `genero`(`descricao`) VALUES("Suspense");
+INSERT INTO `genero`(`descricao`) VALUES("Terror");
+INSERT INTO `genero`(`descricao`) VALUES("Animação");
+INSERT INTO `genero`(`descricao`) VALUES("Romance");
+INSERT INTO `genero`(`descricao`) VALUES("Biográfia");
+INSERT INTO `genero`(`descricao`) VALUES("Documentário");
+
+-- Filmes
+
+INSERT INTO `filme`(`nome_pt`, `nome_or`, `ano_lancamento`, `sinopse`, `diretor_id`, `tipo_id`) VALUES("O Poderoso Chefão", "The Godfather", "1972", "O patriarca envelhecido de uma dinastia do crime organizado transfere o controle de seu império clandestino para seu filho relutante.", 1, 2);
+INSERT INTO `filme`(`nome_pt`, `nome_or`, `ano_lancamento`, `sinopse`, `diretor_id`, `tipo_id`) VALUES("Um Estranho no Ninho", "One Flew Over the Cuckoo's Nest", "1975", "Um criminoso defende a insanidade e é internado em uma instituição mental, onde se rebela contra a enfermeira opressora e reúne os pacientes assustados.", 2, 2);
+INSERT INTO `filme`(`nome_pt`, `nome_or`, `ano_lancamento`, `sinopse`, `diretor_id`, `tipo_id`) VALUES("Laranja Mecânica", "Clockwork Orange", "1971", "No futuro, um líder de gangue sádico é preso e se oferece para um experimento de aversão à conduta, mas não corre como o planejado.", 3, 2);
+INSERT INTO `filme`(`nome_pt`, `nome_or`, `ano_lancamento`, `sinopse`, `diretor_id`, `tipo_id`) VALUES("Os Suspeitos", "the usual suspects ", "1995", "Um único sobrevivente fala dos eventos complicados que levaram a uma horrível batalha armada em um barco, que começou quando cinco criminosos se encontraram em uma fila aparentemente aleatória da polícia.", 4, 2);
+INSERT INTO `filme`(`nome_pt`, `nome_or`, `ano_lancamento`, `sinopse`, `diretor_id`, `tipo_id`) VALUES("Scarface", "Scarface", "1983", "Em 1980, em Miami, um determinado imigrante cubano assume um cartel de drogas e sucumbe à ganância.", 5, 2);
+INSERT INTO `filme`(`nome_pt`, `nome_or`, `ano_lancamento`, `sinopse`, `diretor_id`, `tipo_id`) VALUES("Pulp Fiction: Tempo de Violência", "Pulp Fiction", "1994", "A vida de dois assassinos da máfia, um boxeador, um gângster e sua esposa, e um par de bandidos de lanchonete se entrelaçam em quatro histórias de violência e redenção.", 6, 2);
+INSERT INTO `filme`(`nome_pt`, `nome_or`, `ano_lancamento`, `sinopse`, `diretor_id`, `tipo_id`) VALUES("Kill Bill: Volume 1", "Kill Bill: Volume 1", "2003", "Depois de acordar de um coma de quatro anos, um ex-assassino faz vingança contra a equipe de assassinos que a traiu.", 6, 3);
+INSERT INTO `filme`(`nome_pt`, `nome_or`, `ano_lancamento`, `sinopse`, `diretor_id`, `tipo_id`) VALUES("Melhor é Impossível", "As Good as It Gets", "1997", "Uma mãe solteira e garçonete, um autor misantrópico e um artista gay formam uma amizade improvável depois que o artista é agredido em um assalto.", 7, 4);
+INSERT INTO `filme`(`nome_pt`, `nome_or`, `ano_lancamento`, `sinopse`, `diretor_id`, `tipo_id`) VALUES("Os Goonies", "The Goonies", "1985", "Um grupo de jovens desajustados que se autodenominam The Goonies descobrem um mapa antigo e partem em uma missão para encontrar o tesouro perdido de um pirata lendário.", 8, 5);
+INSERT INTO `filme`(`nome_pt`, `nome_or`, `ano_lancamento`, `sinopse`, `diretor_id`, `tipo_id`) VALUES("Cidade de Deus", NULL, "2002", "Nas favelas do Rio, dois caminhos infantis divergem quando um se esforça para se tornar fotógrafo e o outro como chefão.", 9, 2);
+INSERT INTO `filme`(`nome_pt`, `nome_or`, `ano_lancamento`, `sinopse`, `diretor_id`, `tipo_id`) VALUES("O Grande Mestre", "Yut doi jung si", "2008", "During the Japanese invasion of 1937, when a wealthy martial artist is forced to leave his home and work to support his family, he reluctantly agrees to train others in the art of Wing Chun for self-defense.", 10, 3);
+INSERT INTO `filme`(`nome_pt`, `nome_or`, `ano_lancamento`, `sinopse`, `diretor_id`, `tipo_id`) VALUES("À Espera de um Milagre", "The Green Mile", "1999", "A vida dos guardas no corredor da morte é afetada por uma de suas acusações: um negro acusado de assassinato e estupro de crianças, mas que tem um dom misterioso.", 11, 2);
+
+-- FilmePremio
+
+INSERT INTO `filme_premio`(`filme_id`, `premio_id`) VALUES (1, 2);
+INSERT INTO `filme_premio`(`filme_id`, `premio_id`) VALUES (1, 5);
+INSERT INTO `filme_premio`(`filme_id`, `premio_id`) VALUES (1, 4);
+INSERT INTO `filme_premio`(`filme_id`, `premio_id`) VALUES (2, 4);
+INSERT INTO `filme_premio`(`filme_id`, `premio_id`) VALUES (3, 7);
+INSERT INTO `filme_premio`(`filme_id`, `premio_id`) VALUES (3, 2);
+INSERT INTO `filme_premio`(`filme_id`, `premio_id`) VALUES (4, 8);
+INSERT INTO `filme_premio`(`filme_id`, `premio_id`) VALUES (4, 1);
+INSERT INTO `filme_premio`(`filme_id`, `premio_id`) VALUES (5, 6);
+INSERT INTO `filme_premio`(`filme_id`, `premio_id`) VALUES (6, 1);
+INSERT INTO `filme_premio`(`filme_id`, `premio_id`) VALUES (7, 5);
+INSERT INTO `filme_premio`(`filme_id`, `premio_id`) VALUES (8, 8);
+INSERT INTO `filme_premio`(`filme_id`, `premio_id`) VALUES (9, 4);
