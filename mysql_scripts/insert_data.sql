@@ -1,5 +1,6 @@
 USE bd_sica_movie;
 
+-- Horario
 INSERT INTO horario(descricao) VALUES ("16:00");
 INSERT INTO horario(descricao) VALUES ("17:00");
 INSERT INTO horario(descricao) VALUES ("18:00");
@@ -8,11 +9,13 @@ INSERT INTO horario(descricao) VALUES ("20:00");
 INSERT INTO horario(descricao) VALUES ("22:00");
 INSERT INTO horario(descricao) VALUES ("24:00");
 
+-- Localizacao
 INSERT INTO localizacao(descricao) VALUES ("North Shopping Siqueira");
 INSERT INTO localizacao(descricao) VALUES ("South Shopping Siqueira");
 INSERT INTO localizacao(descricao) VALUES ("Centro Cultural Siqueira do Mar");
 INSERT INTO localizacao(descricao) VALUES ("Shopping Via Siqueira");
 
+-- Sala
 INSERT INTO sala(nome, capacidade, localizacao_id) VALUES ("Praia de Iracema", 300, 1);
 INSERT INTO sala(nome, capacidade, localizacao_id) VALUES ("Majorlândia", 400, 1);
 INSERT INTO sala(nome, capacidade, localizacao_id) VALUES ("Cumbuco", 300, 1);
@@ -37,6 +40,7 @@ INSERT INTO sala(nome, capacidade, localizacao_id) VALUES ("Taipus de Fora", 300
 INSERT INTO sala(nome, capacidade, localizacao_id) VALUES ("Morere", 300, 4);
 INSERT INTO sala(nome, capacidade, localizacao_id) VALUES ("Taperapuan", 300, 4);
 
+-- Premio
 INSERT INTO premio(nome, descricao, ano_premiacao) VALUES ("Palma de Ouro", "É o prêmio de maior prestígio do Festival de Cinema de Cannes", "2014");
 INSERT INTO premio(nome, descricao, ano_premiacao) VALUES ("Oscar de melhor qualidade artística de produção", "Oscar de melhor qualidade artística de produção", "2018");
 INSERT INTO premio(nome, descricao, ano_premiacao) VALUES ("Oscar de melhor ator", "Oscar de melhor ator", "2013");
@@ -47,6 +51,7 @@ INSERT INTO premio(nome, descricao, ano_premiacao) VALUES ("Oscar de melhor foto
 INSERT INTO premio(nome, descricao, ano_premiacao) VALUES ("Oscar Honorário", "Oscar Honorário", "2014");
 INSERT INTO premio(nome, descricao, ano_premiacao) VALUES ("Oscar científico ou técnico", "Oscar científico ou técnico", "2014");
 
+-- Funcao
 INSERT INTO funcao(descricao) VALUES ("Caixa");
 INSERT INTO funcao(descricao) VALUES ("Lanterninha");
 INSERT INTO funcao(descricao) VALUES ("Zelador");
@@ -56,6 +61,7 @@ INSERT INTO funcao(descricao) VALUES ("Gerente de Operações");
 INSERT INTO funcao(descricao) VALUES ("Técnico de Áudio");
 INSERT INTO funcao(descricao) VALUES ("Auxiliar de Manutenção");
 
+-- Funcionario
 INSERT INTO funcionario(matricula, nome, data_admissao, salario, funcao_id, localizacao_id) VALUES ("171747", "José dos Santos", "2017-11-21", 1000.00, 1, 1);
 INSERT INTO funcionario(matricula, nome, data_admissao, salario, funcao_id, localizacao_id) VALUES ("171748", "Maria Joelma do Nascimento", "2017-10-17", 1500.00, 2, 1);
 INSERT INTO funcionario(matricula, nome, data_admissao, salario, funcao_id, localizacao_id) VALUES ("171749", "Jonanthas Fabricio Ferreira", "2018-09-16", 998.00, 3, 1);
@@ -96,6 +102,7 @@ INSERT INTO funcionario(matricula, nome, data_admissao, salario, funcao_id, loca
 INSERT INTO funcionario(matricula, nome, data_admissao, salario, funcao_id, localizacao_id) VALUES ("010248", "Jário Siqueira Júnior", "2011-06-30", 1449.00, 8, 4);
 INSERT INTO funcionario(matricula, nome, data_admissao, salario, funcao_id, localizacao_id) VALUES ("010249", "Natalia Santos Silva", "2010-11-19", 1050.00, 2, 4);
 
+-- FuncionarioHorario
 INSERT INTO funcionario_horario(funcionario_id, horario_id) VALUES (1, 1);
 INSERT INTO funcionario_horario(funcionario_id, horario_id) VALUES (1, 2);
 INSERT INTO funcionario_horario(funcionario_id, horario_id) VALUES (1, 3);
@@ -247,7 +254,6 @@ INSERT INTO diretor(nome) VALUES("Wilson Yip");
 INSERT INTO diretor(nome) VALUES("Frank Darabont");
 
 -- Genero
-
 INSERT INTO genero(descricao) VALUES("Drama");
 INSERT INTO genero(descricao) VALUES("Crime");
 INSERT INTO genero(descricao) VALUES("Ação");
@@ -262,7 +268,6 @@ INSERT INTO genero(descricao) VALUES("Biográfia");
 INSERT INTO genero(descricao) VALUES("Documentário");
 
 -- Filmes
-
 INSERT INTO filme(nome_pt, nome_or, ano_lancamento, sinopse, diretor_id, tipo_id) VALUES("O Poderoso Chefão", "The Godfather", "1972", "O patriarca envelhecido de uma dinastia do crime organizado transfere o controle de seu império clandestino para seu filho relutante.", 1, 2);
 INSERT INTO filme(nome_pt, nome_or, ano_lancamento, sinopse, diretor_id, tipo_id) VALUES("Um Estranho no Ninho", "One Flew Over the Cuckoo's Nest", "1975", "Um criminoso defende a insanidade e é internado em uma instituição mental, onde se rebela contra a enfermeira opressora e reúne os pacientes assustados.", 2, 2);
 INSERT INTO filme(nome_pt, nome_or, ano_lancamento, sinopse, diretor_id, tipo_id) VALUES("Laranja Mecânica", "Clockwork Orange", "1971", "No futuro, um líder de gangue sádico é preso e se oferece para um experimento de aversão à conduta, mas não corre como o planejado.", 3, 2);
@@ -277,7 +282,6 @@ INSERT INTO filme(nome_pt, nome_or, ano_lancamento, sinopse, diretor_id, tipo_id
 INSERT INTO filme(nome_pt, nome_or, ano_lancamento, sinopse, diretor_id, tipo_id) VALUES("À Espera de um Milagre", "The Green Mile", "1999", "A vida dos guardas no corredor da morte é afetada por uma de suas acusações: um negro acusado de assassinato e estupro de crianças, mas que tem um dom misterioso.", 11, 2);
 
 -- FilmePremio
-
 INSERT INTO filme_premio(filme_id, premio_id) VALUES (1, 2);
 INSERT INTO filme_premio(filme_id, premio_id) VALUES (1, 5);
 INSERT INTO filme_premio(filme_id, premio_id) VALUES (1, 4);
@@ -291,3 +295,76 @@ INSERT INTO filme_premio(filme_id, premio_id) VALUES (6, 1);
 INSERT INTO filme_premio(filme_id, premio_id) VALUES (7, 5);
 INSERT INTO filme_premio(filme_id, premio_id) VALUES (8, 8);
 INSERT INTO filme_premio(filme_id, premio_id) VALUES (9, 4);
+
+-- Sessao
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(1, 1, 1);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(1, 1, 2);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(1, 1, 3);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(1, 1, 4);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(1, 1, 5);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(1, 1, 6);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(1, 1, 7);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(2, 2, 1);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(2, 2, 2);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(2, 2, 3);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(2, 2, 4);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(2, 2, 5);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(2, 2, 6);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(2, 2, 7);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(3, 3, 1);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(3, 3, 2);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(3, 3, 3);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(3, 3, 4);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(3, 3, 5);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(3, 3, 6);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(3, 3, 7);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(4, 4, 1);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(4, 4, 2);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(4, 4, 3);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(4, 4, 4);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(4, 4, 5);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(4, 4, 6);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(4, 4, 7);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(5, 5, 1);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(5, 5, 2);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(5, 5, 3);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(5, 5, 4);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(5, 5, 5);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(5, 5, 6);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(5, 5, 7);
+
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(1, 1, 1);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(1, 1, 2);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(1, 1, 3);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(1, 1, 4);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(1, 1, 5);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(1, 1, 6);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(1, 1, 7);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(2, 2, 1);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(2, 2, 2);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(2, 2, 3);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(2, 2, 4);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(2, 2, 5);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(2, 2, 6);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(2, 2, 7);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(3, 3, 1);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(3, 3, 2);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(3, 3, 3);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(3, 3, 4);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(3, 3, 5);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(3, 3, 6);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(3, 3, 7);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(4, 4, 1);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(4, 4, 2);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(4, 4, 3);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(4, 4, 4);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(4, 4, 5);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(4, 4, 6);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(4, 4, 7);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(5, 5, 1);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(5, 5, 2);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(5, 5, 3);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(5, 5, 4);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(5, 5, 5);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(5, 5, 6);
+INSERT INTO sessao(filme_id, sala_id, horario_id) VALUES(5, 5, 7);
