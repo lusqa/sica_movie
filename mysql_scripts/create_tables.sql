@@ -126,12 +126,21 @@ CREATE TABLE IF NOT EXISTS sessao (
         FOREIGN KEY(horario_id) REFERENCES horario(id)
 );
 
+CREATE TABLE IF NOT EXISTS tipo_ingresso (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    descricao VARCHAR(50) NOT NULL,
+    CONSTRAINT pk_tipoingresso
+        PRIMARY KEY(id)
+);
+
 CREATE TABLE IF NOT EXISTS ingresso (
     id INT(11) NOT NULL AUTO_INCREMENT,
     sessao_id INT(11) NOT NULL,
-    isMeia TINYINT (1) NOT NULL,
+    tipo_ingresso INT(11) NOT NULL,
     CONSTRAINT pk_ingresso
         PRIMARY KEY(id),
     CONSTRAINT fk_ingresso_sessao_id
-        FOREIGN KEY(sessao_id) REFERENCES sessao(id)
+        FOREIGN KEY(sessao_id) REFERENCES sessao(id),
+    CONSTRAINT fk_ingresso_tipoingresso_id
+        FOREIGN KEY(tipo_ingresso) REFERENCES tipo_ingresso(id)
 );
