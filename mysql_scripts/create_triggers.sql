@@ -21,14 +21,28 @@ CREATE TRIGGER ch_sessao BEFORE INSERT ON sessao FOR EACH ROW BEGIN
 END$$
 DELIMITER ;
 
--- TODO trigger to verify if the sessao is full
-
 DELIMITER $$
 USE bd_sica_movie$$
-CREATE TRIGGER sala_lotada BEFORE INSERT ON ingresso FOR EACH ROW BEGIN
-    IF (COUNT() IN (SELECT horario_id FROM  sessao s WHERE s.sala_id = NEW.sala_id)) THEN
+CREATE TRIGGER sala_lotada BEFORE INSERT ON ingresso FOR EACH ROW BEGIN 
+    DECLARE rows_count INT;
+	DECLARE message VARCHAR(50);
+    DECLARE size INT;
+
+    SET @rows_count := (
+    SELECT COUNT(*) FROM sala AS s
+		INNER JOIN sessao as se ON se.sala_id = s.id
+		INNER JOIN ingresso as i ON se.id = i.sessao_id
+		WHERE se.id = NEW.sessao_id
+    );
+    SET @size := (
+    	SELECT s.capacidade FROM sala AS s
+		INNER JOIN sessao as se ON se.sala_id = s.id
+		WHERE se.id = NEW.sessao_id
+    );
+
+    IF ((@rows_count + 1) > @size) THEN
         SIGNAL SQLSTATE '12345'
             SET MESSAGE_TEXT = 'Sessão lotada';
-    END IF; 
+    END IF;
 END$$
 DELIMITER ;
